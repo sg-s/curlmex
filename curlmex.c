@@ -46,9 +46,6 @@ WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
 
 void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 {
-    // declare pointers to outputs
-    double *output_state;
-
 
     char *input_buf, *output_buf;
     size_t buflen;
@@ -82,8 +79,8 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
     
 
     char str[100];
-	strcpy(str, "");
-	strcat(str, input_buf);
+	   strcpy(str, "");
+	   strcat(str, input_buf);
 
 
 
@@ -130,7 +127,11 @@ void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[])
 
 
     // attempt to read out 
-    mexPrintf(chunk.memory);
+    // mexPrintf(chunk.memory);
+
+    plhs[0] = mxCreateString(chunk.memory);
+
+    mxFree(input_buf);
 }
 
 
